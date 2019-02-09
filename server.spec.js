@@ -16,11 +16,10 @@ describe('the route handlers',  ()    =>    {
             expect(response.status).toBe(422);
         })
 
-        it('responds with the id', async ()  =>  {
+        it('responds with the json', async ()  =>  {
             const body  =   { title: 'Kingdom Hearts 3', genre: 'RPG', year: 2019 };
             const response = await request(server).post('/games').send(body);
-            expect(response.json.length).toEqual(1);
-            expect(response.json[0]).toEqual(1);
+            expect(response.type).toBe('application/json');
         })
 
     });
@@ -43,8 +42,7 @@ describe('the route handlers',  ()    =>    {
             await request(server).post('/games').send(game1);
             await request(server).post('/games').send(game2);
             const response = await request(server).get('/');
-            console.log(response);
-            expect(response.status).toBe(999);
+            expect(response).toBe(999);
         })
     });
 })
