@@ -23,7 +23,6 @@ describe('the route handlers',  ()    =>    {
         it('responds with the id', async ()  =>  {
             const body  =   { title: 'Kingdom Hearts 3', genre: 'RPG', year: 2019 };
             const response = await request(server).post('/games').send(body);
-            console.log(response)
             expect(response.text[0].length).toEqual(1)
         })
 
@@ -44,9 +43,9 @@ describe('the route handlers',  ()    =>    {
         it('responds with a list of games', async   ()  =>  {
             const response = await request(server).get('/');
             const responseLength = response.text.length >= 0 ? true : false;
-            const responseIsArray = response.text.constructor === Array ? true : false;
             expect(responseLength).toBe(true);
-            expect(responseIsArray).toBe(true);
+            expect(response.text[0]).toBe('[');
+            expect(response.text[response.text.length-1]).toBe(']');
         })
     });
 })

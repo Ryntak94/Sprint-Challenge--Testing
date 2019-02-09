@@ -17,4 +17,9 @@ server.post('/games',   async   (req, res)  =>  {
     }
 })
 
+server.get('/', async   (req, res)  =>  {
+    const response = await db('games');
+    res.status(200).json(response);
+})
+
 module.exports = server
