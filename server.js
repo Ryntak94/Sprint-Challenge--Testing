@@ -10,7 +10,8 @@ server.use(express.json());
 server.post('/games',   async   (req, res)  =>  {
     const game = req.body;
     if(game.title && game.genre)    {
-            res.status(201).json(game);
+            const response = await db('games').insert(game)
+            res.status(201).json(response);
     }   else {
         res.status(422).json({error: 'Please include a title and genre'});
     }
