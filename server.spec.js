@@ -43,8 +43,10 @@ describe('the route handlers',  ()    =>    {
 
         it('responds with a list of games', async   ()  =>  {
             const response = await request(server).get('/');
-            const responseLength = response.text.length > 0 ? true : false;
+            const responseLength = response.text.length >= 0 ? true : false;
+            const responseIsArray = response.text.constructor === Array ? true : false;
             expect(responseLength).toBe(true);
+            expect(responseIsArray).toBe(true);
         })
     });
 })
