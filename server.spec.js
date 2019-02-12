@@ -44,8 +44,7 @@ describe('the route handlers',  ()    =>    {
             const response = await request(server).get('/');
             const responseLength = response.text.length >= 2 ? true : false;
             expect(responseLength).toBe(true);
-            expect(response.text[0]).toBe('[');
-            expect(response.text[response.text.length-1]).toBe(']');
+            expect(response.body.constructor === Array).toBe(true);
         })
     });
 })
